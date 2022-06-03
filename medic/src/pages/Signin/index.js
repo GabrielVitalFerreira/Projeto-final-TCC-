@@ -1,46 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import * as Animatable from 'react-native-animatable'
 import { TextInput } from 'react-native-web';
 
-export default function Register() {
+import { useNavigation } from '@react-navigation/native';
+
+export default function Welcome() {
+    const navigation = useNavigation();
+
+    const [useEmail, setEmail] = useState("")
+    const [useSenha, setSenha] = useState("")
+
+    let data = {
+        email: useEmail,
+        senha: useSenha
+    }
+
+    const login = (body) => {
+        fetch("http://10.87.207.15:3000/login", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        }) 
+        .then(resp => { 
+            return resp;
+        })
+        .then(data  => {
+            if(data.status == 200) {
+               //login certo
+               data.json().then( result => {
+                    navigation.navigate('Home')
+                    console.log(result);
+               })
+            }else if(data.status == 401) {
+                //senha tiver errada
+    
+                alert('senha errada')
+            }
+        });
+    }
+
     return (
         <View style={styles.container}>
-            <Animatable.View animation="fadeInLeft" deley={1000} style={styles.containerHeader}>
-                <Text style={styles.message}>Cadastre-se</Text>
+            <Animatable.View animation="fadeInLeft" deley={500} style={styles.containerHeader}>
+                <Text style={styles.message}>Bem-vindo(a)</Text>
             </Animatable.View>
-
             <Animatable.View animation="fadeInUp" style={styles.containerForm}>
                 <Text style={styles.title}>Email</Text>
                 <TextInput
                 placeholder="Digite um email"
+                onChangeText={setEmail}
+                value={useEmail}
                 style={styles.input}
                 />
 
                 <Text style={styles.title}>Senha</Text>
                 <TextInput
                 placeholder="Sua senha"
+                onChangeText={setSenha}
+                secureTextEntry={true}
+                value={useSenha}
                 style={styles.input}
                 />
 
-                <Text style={styles.title}>CPF</Text>
-                <TextInput
-                placeholder="Digite seu CPF"
-                style={styles.input}
-                />
-
-                <Text style={styles.title}>Nome</Text>
-                <TextInput
-                placeholder="Nome do seu Hospital"
-                style={styles.input}
-                />
-
-                <TouchableOpacity style={styles.button} >
+                <TouchableOpacity style={styles.button} onPress={() => login(data)} >
                     <Text style={styles.buttonText}>Acessar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonRegister} >
+                <TouchableOpacity 
+                style={styles.buttonRegister}
+                onPress={ () => navigation.navigate('Register')}
+                >
                     <Text style={styles.registerText}>Não possui uma conta? Cadastre-se</Text>
                 </TouchableOpacity>
 
@@ -102,6 +135,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     registerText: {
-        color: "#FFF",
+        color: "#a1a1a1",
     }
 })

@@ -21,22 +21,12 @@ export default function Home() {
                     />
                 </View>
                 <View style={styles.containerTxts}>
-                    <Animatable.Text 
-                    animation="fadeInLeft"
-                    deley = {600}
-                    style={styles.txt}>
-                        Organize seu estoque como nunca
-                        </Animatable.Text>
-                    <Animatable.Text 
-                    animation="fadeInLeft"
-
-                    style={styles.txtTitle}>
-                        Medic Control
-                        </Animatable.Text>
+                    <Animatable.Text delay={600} animation="fadeInLeft" style={styles.txt}>Organize seu estoque como nunca</Animatable.Text>
+                    <Animatable.Text delay={1000} animation="fadeInLeft" style={styles.txtTitle}>Medic Control</Animatable.Text>
                 </View>
             </View>
            <View style={styles.containerTool}>
-               <Text>oi</Text>
+               <Text style={styles.txtMore}>oi</Text>
            </View>
         </ScrollView>
         

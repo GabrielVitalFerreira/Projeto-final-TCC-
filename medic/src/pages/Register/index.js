@@ -6,19 +6,25 @@ import { TextInput } from 'react-native-web';
 
 import { useNavigation } from '@react-navigation/native';
 
-export default function Welcome() {
-    const navigation = useNavigation();
+export default function Register() {
 
     const [useEmail, setEmail] = useState("")
     const [useSenha, setSenha] = useState("")
-
-    let data = {
+    const [useCpf, setCpf] = useState("")
+    const [useName, setName] = useState("")
+    const [useTelefone, setTelefone] = useState("")
+    
+    let userdata = {
         email: useEmail,
-        senha: useSenha
+        senha: useSenha,
+        cpf: useCpf,
+        telefone: useTelefone,
+        nome_completo: useName,
+        data_nascimento: null,
     }
-
-    const login = (body) => {
-        fetch("http:/10.87.207.15:3000/login", {
+    
+    const cadastro = (body) => {
+        fetch("http://10.87.207.15:3000/func", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -29,53 +35,73 @@ export default function Welcome() {
             return resp;
         })
         .then(data  => {
+            console.log(data.status);
             if(data.status == 200) {
                //login certo
                data.json().then( result => {
-                    navigation.navigate('Home')
+                    navigation.navigate('Signin')
                     console.log(result);
                })
-            }else if(data.status == 401) {
-                //senha tiver errada
+            }else if(data.status == 400) {
+                //email ja cadastrado
     
-                alert('senha errada')
+                alert('email ja existente')
             }
         });
     }
 
     return (
         <View style={styles.container}>
-            <Animatable.View animation="fadeInLeft" deley={500} style={styles.containerHeader}>
-                <Text style={styles.message}>Bem-vindo(a)</Text>
+            <Animatable.View animation="fadeInLeft" delay={1000} style={styles.containerHeader}>
+                <Text style={styles.message}>Cadastre-se</Text>
             </Animatable.View>
+
             <Animatable.View animation="fadeInUp" style={styles.containerForm}>
                 <Text style={styles.title}>Email</Text>
                 <TextInput
-                placeholder="Digite um email"
+                placeholder="Seu e-mail"
                 onChangeText={setEmail}
                 value={useEmail}
                 style={styles.input}
+
                 />
 
                 <Text style={styles.title}>Senha</Text>
                 <TextInput
                 placeholder="Sua senha"
                 onChangeText={setSenha}
+                secureTextEntry={true}
                 value={useSenha}
                 style={styles.input}
                 />
 
-                <TouchableOpacity style={styles.button} onPress={() => login(data)} >
-                    <Text style={styles.buttonText}>Acessar</Text>
-                </TouchableOpacity>
+                <Text style={styles.title}>CPF</Text>
+                <TextInput
+                placeholder="Digite seu CPF"
+                onChangeText={setCpf}
+                value={useCpf}
+                style={styles.input}
+                />
 
-                <TouchableOpacity 
-                style={styles.buttonRegister}
-                onPress={ () => navigation.navigate('Register')}
-                >
-                    <Text style={styles.registerText}>Não possui uma conta? Cadastre-se</Text>
-                </TouchableOpacity>
+                <Text style={styles.title}>Telefone</Text>
+                <TextInput
+                placeholder="Telefone"
+                onChangeText={setTelefone}
+                value={useTelefone}
+                style={styles.input}
+                />
 
+                <Text style={styles.title}>Nome</Text>
+                <TextInput
+                placeholder="Nome do seu Hospital"
+                onChangeText={setName}
+                value={useName}
+                style={styles.input}
+                />
+
+                <TouchableOpacity style={styles.button} onPress={() => cadastro(userdata)} >
+                    <Text style={styles.buttonText}>Confirmar</Text>
+                </TouchableOpacity>
             </Animatable.View>
         </View>
     )
@@ -134,6 +160,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     registerText: {
-        color: "#a1a1a1",
+        color: "#FFF",
     }
 })
