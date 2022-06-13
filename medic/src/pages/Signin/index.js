@@ -29,6 +29,8 @@ export default function Welcome() {
             return resp;
         })
         .then(data  => {
+            console.log(data.status);
+            
             if(data.status == 200) {
                //login certo
                data.json().then( result => {
