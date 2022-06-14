@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,200;1,800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/button.css">
+    <link rel="stylesheet" href="./css/records.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <script src="main.js" defer></script>
+    <title>Estoque</title>
+    <script 
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <button id="imghome" onclick="irparahome()" class="imgbtn"><img src="https://cdn-icons-png.flaticon.com/512/834/834128.png" class="iconhome"></button>
+        <h1 class="header-title">Cadastro de Produtos</h1>
+        <button id="imgestoq" onclick="irparaperfil()" class="imgbtn"><img src="https://cdn-icons-png.flaticon.com/512/121/121693.png" class="iconuser"></button>
+    </header>
+    <main>
+        <button type="button" class="button blue mobile" id="cadastrarProduto">Cadastrar Produto</button>
+        <table id="tableProduto" class="records">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Data de entrada</th>
+                    <th>Data de validade</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2>Novo Produto</h2>
+                    <span class="modal-close" id="modalClose">&#10006;</span>
+                </header>
+                <form id="form" class="modal-form">
+                    <input type="text" id="id" data-index="new" class="modal-field" placeholder="ID" required>
+                    <input type="text" id="nome" class="modal-field" placeholder="Nome" required>
+                    <input type="text" id="quantidade" class="modal-field" placeholder="Quantidade" required>
+                    <input type="date" id="datae" class="modal-field" placeholder="Data de entrada" required>
+                    <input type="date" id="datav" class="modal-field" placeholder="Data de validade" required>
+                </form>
+                <footer class="modal-footer">
+                    <button id="salvar" class="button green">Salvar</button>
+                    <button id="cancelar" class="button blue">Cancelar</button>
+                </footer>
+            </div>
+        </div>
+    </main>
+        <h5 class="copyright">© 2022 copyright - Medic Controll</h5>
+</body>
+</html>

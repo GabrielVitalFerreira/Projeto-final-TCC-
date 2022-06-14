@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <button id="imghome" onclick="irparahome()" class="button2"><img src="https://cdn-icons-png.flaticon.com/512/834/834128.png" class="home"></button>
+
+        <img src="./assets/logo-removebg-preview (1).png" class="logo">
+        
+        <button id="imgestoque" onclick="irparaestoque()" class="button2"><img src="https://cdn-icons-png.flaticon.com/512/5166/5166970.png" class="estoque"></button>
+    </header>
+
+    <div class="container">
+        <div class="imagem">
+            <img src="./assets/foto.png" alt="Selecione uma imagem" id="imgPhoto">
+        </div>
+        <div class="dadospessoais">
+            <h1>Dados Pessoais</h1>
+            <input type="text" placeholder="Nome" class="input">
+            <input type="text" placeholder="Sobrenome" class="input">
+            <input type="date" placeholder="Data de nascimento" class="input">
+            <input type="text" placeholder="CPF" class="input">
+        </div>
+
+        <button class="button" style="vertical-align:middle" id="sairbtn" onclick="sair()"><span>Sair</span></button>
+        <h5 class="copyright">© 2022 copyright - Medic Controll</h5>
+    </div>
+
+    <input type="file" id="flImage" name="fImage" accept="image/*">
+
+    <script src="./index.js"></script>
+</body>
+</html>
